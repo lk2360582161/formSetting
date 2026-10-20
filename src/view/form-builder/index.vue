@@ -2,7 +2,7 @@
   <div class="form-builder">
     <div class="left-panel">
       <div class="panel-header">
-        <h3>组件库</h3>
+        <h3>组件2库</h3>
       </div>
       <div class="component-list">
         <a-collapse v-model:activeKey="activeKeys" :bordered="false">

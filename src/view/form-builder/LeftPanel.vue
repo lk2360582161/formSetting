@@ -1,7 +1,7 @@
 <template>
   <div class="h-full flex flex-col">
     <div class="p-4 border-b border-gray-200">
-      <h3 class="text-lg font-medium m-0">组件库</h3>
+      <h3 class="text-lg font-medium m-0">123123组件库</h3>
     </div>
     
     <div class="flex-1 overflow-y-auto p-4">
