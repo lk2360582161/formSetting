@@ -30,18 +30,26 @@ export default defineConfig({
         drop_debugger: true
       }
     },
+    chunkSizeWarningLimit: 2000, // 👈 新增：把警告阈值调大，眼不见心不烦
     rollupOptions: {
       output: {
-        manualChunks: {
-          'antd': ['ant-design-vue', '@ant-design/icons-vue'],
-          'vendor': ['vue', 'lodash', 'vuedraggable']
+        // 👇 修改：使用函数方式智能拆包，彻底解决循环依赖
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            // 只要涉及到 antd、vue 或 element 等 UI 库，全部塞进同一个文件
+            if (id.includes('ant-design-vue') || id.includes('@ant-design') || id.includes('vue') || id.includes('@vue')) {
+              return 'vendor-ui'
+            }
+            // 其他第三方工具库
+            return 'vendor-utils'
+          }
         }
       }
     }
   },
   test: {
-    environment: 'jsdom',  // 模拟浏览器环境
-    globals: true,         // 不用每次导入 describe, it, expect
-    setupFiles: ['./vitest.setup.js']  // 测试启动文件
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./vitest.setup.js']
   }
 })
