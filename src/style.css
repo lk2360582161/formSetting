@@ -1,0 +1,77 @@
+/* 修复拖拽闪烁的全局样式 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+/* 拖拽相关样式 */
+.dragging {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.no-transition {
+  transition: none !important;
+}
+
+/* 防止文本选中 */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* 优化拖拽效果 */
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.gu-hide {
+  display: none !important;
+}
+
+.gu-unselectable {
+  user-select: none !important;
+}
+
+.gu-transit {
+  opacity: 0.2;
+}
+.dragging-active * {
+  cursor: grabbing !important;
+}
+
+/* 优化拖拽时的滚动体验 */
+.designer-content {
+  scroll-behavior: smooth;
+}
+
+/* 拖拽时的占位符动画 */
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+}
+
+.drag-placeholder {
+  animation: pulse 1.5s ease-in-out infinite;
+}
